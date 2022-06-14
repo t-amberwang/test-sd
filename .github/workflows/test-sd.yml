@@ -11,4 +11,5 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - run: az config set extension.use_dynamic_install=yes_without_prompt
       - name: Azure SmartDeploy
-        uses: t-amberwang/smartdeploy@1
+        uses: t-amberwang/smartdeploy@0.0.0
+
