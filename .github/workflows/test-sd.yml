@@ -1,5 +1,5 @@
 name: test-smartdeploy
-on: []
+on: [push]
 jobs:
   run-test:
     runs-on: ubuntu-latest
