@@ -1,0 +1,13 @@
+name: test-smartdeploy
+on: []
+jobs:
+  run-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: azure login
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - run: az config set extension.use_dynamic_install=yes_without_prompt
+      - name: Azure SmartDeploy
+        uses: t-amberwang/smartdeploy@1
