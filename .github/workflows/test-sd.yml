@@ -1,8 +1,9 @@
 name: test-smartdeploy
-on: []
+on: [push]
 jobs:
   run-test:
     runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'run test')"
     steps:
       - name: azure login
         uses: Azure/login@v1
