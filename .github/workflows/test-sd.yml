@@ -16,7 +16,7 @@ jobs:
           appName: amber-test-container-2
           resourceGroup: amber-test-container
           imageID: mcr.microsoft.com/azuredocs/containerapps-helloworld:latest
-          revisionSuffix: test1
+          revisionSuffix: test-sd-1
           stepPct: 20
       - name: direct traffic away
         run: az containerapp ingress traffic set -n amber-test-container -g amber-test-container --revision-weight amber-test-container--ha9tfua=100
