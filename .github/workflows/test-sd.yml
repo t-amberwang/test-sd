@@ -11,7 +11,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - run: az config set extension.use_dynamic_install=yes_without_prompt
       - name: Azure SmartDeploy
-        uses: t-amberwang/smartdeploy@0.0.0
+        uses: t-amberwang/smartdeploy@0.1.0
         with:
           appName: amber-test-container-2
           resourceGroup: amber-test-container
