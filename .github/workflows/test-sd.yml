@@ -18,6 +18,8 @@ jobs:
           imageID: mcr.microsoft.com/azuredocs/containerapps-helloworld:latest
           revisionSuffix: test-sd-1
           stepPct: 20
+          stepTime: 1
+          monitorInterval: 0.25
       - name: direct traffic away
         run: az containerapp ingress traffic set -n amber-test-container -g amber-test-container --revision-weight amber-test-container--ha9tfua=100
       - name: deactivate
