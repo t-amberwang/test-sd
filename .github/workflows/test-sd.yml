@@ -1,5 +1,7 @@
 name: test-smartdeploy
 on: [push]
+env:
+  REV_SUFFIX: test-sd-1
 jobs:
   run-test:
     runs-on: ubuntu-latest
@@ -16,12 +18,12 @@ jobs:
           appName: amber-test-container-2
           resourceGroup: amber-test-container
           imageID: mcr.microsoft.com/azuredocs/containerapps-helloworld:latest
-          revisionSuffix: test-sd-1
+          revisionSuffix: $REV_SUFFIX
           stepPct: 20
           stepTime: 1
           monitorInterval: 0.25
       - name: direct traffic away
         run: az containerapp ingress traffic set -n amber-test-container -g amber-test-container --revision-weight amber-test-container--ha9tfua=100
       - name: deactivate
-        run: az containerapp revision deactivate --revision amber-test-container--test1 --resource-group amber-test-container
+        run: az containerapp revision deactivate --revision amber-test-container--$REV_SUFFIX --resource-group amber-test-container
 
