@@ -21,6 +21,7 @@ jobs:
           resourceGroup: $RESOURCE_GROUP
           imageID: mcr.microsoft.com/azuredocs/containerapps-helloworld:latest
           revisionSuffix: $REV_SUFFIX
+          canaryDeployment: true
 #           stepPct: 20
 #           stepTime: 0.5
 #           monitorInterval: 0.25
