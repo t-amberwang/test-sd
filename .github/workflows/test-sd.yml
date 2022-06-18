@@ -1,7 +1,10 @@
 name: test-smartdeploy
 on: [push]
 env:
-  REV_SUFFIX: test-sd-1
+  REV_SUFFIX: test-sd-2
+  APP_NAME: amber-test-container-2
+  RESOURCE_GROUP: amber-test-container
+  PRIOR_REVISION: hi2
 jobs:
   run-test:
     runs-on: ubuntu-latest
@@ -11,19 +14,18 @@ jobs:
         uses: Azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-      - run: az config set extension.use_dynamic_install=yes_without_prompt
       - name: Azure SmartDeploy
         uses: t-amberwang/smartdeploy@0.1.0
         with:
-          appName: amber-test-container-2
-          resourceGroup: amber-test-container
+          appName: $APP_NAME
+          resourceGroup: $RESOURCE_GROUP
           imageID: mcr.microsoft.com/azuredocs/containerapps-helloworld:latest
           revisionSuffix: $REV_SUFFIX
           stepPct: 20
-          stepTime: 1
+          stepTime: 0.5
           monitorInterval: 0.25
       - name: direct traffic away
-        run: az containerapp ingress traffic set -n amber-test-container -g amber-test-container --revision-weight amber-test-container--ha9tfua=100
+        run: az containerapp ingress traffic set -n $APP_NAME -g $RESOURCE_GROUP --revision-weight $APP_NAME--$PRIOR_REVISION=100
       - name: deactivate
-        run: az containerapp revision deactivate --revision amber-test-container--$REV_SUFFIX --resource-group amber-test-container
+        run: az containerapp revision deactivate --revision $APP_NAME--$REV_SUFFIX --resource-group $RESOURCE_GROUP
 
