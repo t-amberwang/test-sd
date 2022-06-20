@@ -1,7 +1,7 @@
 name: test-smartdeploy
 on: [push]
 env:
-  REV_SUFFIX: test-sd-6
+  REV_SUFFIX: test-sd-7
   APP_NAME: amber-test-container-2
   RESOURCE_GROUP: amber-test-container
   PRIOR_REVISION: hi2
@@ -21,6 +21,7 @@ jobs:
           resourceGroup: $RESOURCE_GROUP
           imageID: mcr.microsoft.com/azuredocs/containerapps-helloworld:latest
           revisionSuffix: $REV_SUFFIX
+          canaryDeploy: true
 #           stepPct: 50
 #           stepTime: 0.5
 #           monitorInterval: 0.25
