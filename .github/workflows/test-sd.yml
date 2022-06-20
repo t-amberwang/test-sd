@@ -1,7 +1,7 @@
 name: test-smartdeploy
 on: [push]
 env:
-  REV_SUFFIX: test-sd-5
+  REV_SUFFIX: test-sd-6
   APP_NAME: amber-test-container-2
   RESOURCE_GROUP: amber-test-container
   PRIOR_REVISION: hi2
