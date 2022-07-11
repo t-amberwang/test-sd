@@ -1,7 +1,7 @@
 name: test-smartdeploy
 on: [push]
 env:
-  REV_SUFFIX: test-sd-8 #change with run test message
+  REV_SUFFIX: test-sd-9 #change with run test message
   APP_NAME: amber-test-container-2
   RESOURCE_GROUP: amber-test-container
   PRIOR_REVISION: hi2
@@ -23,6 +23,6 @@ jobs:
           revisionSuffix: $REV_SUFFIX
           logAnalyticsWorkspace: amber-test-app-logs
           stepPct: 33
-          stepTime: 5
-          monitorInterval: 1
+          stepTime: 2
+          monitorInterval: 0.5
           monitors: https://www.google.com, https://www.bing.com
