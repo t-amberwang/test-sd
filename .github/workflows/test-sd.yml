@@ -1,7 +1,7 @@
 name: test-smartdeploy
 on: [push]
 env:
-  REV_SUFFIX: test-sd-7
+  REV_SUFFIX: test-sd-8
   APP_NAME: amber-test-container-2
   RESOURCE_GROUP: amber-test-container
   PRIOR_REVISION: hi2
@@ -15,18 +15,14 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       - name: Azure SmartDeploy
-        uses: t-amberwang/smartdeploy@0.1.0
+        uses: t-amberwang/smartdeploy@0.2.0
         with:
           appName: $APP_NAME
           resourceGroup: $RESOURCE_GROUP
           imageID: mcr.microsoft.com/azuredocs/containerapps-helloworld:latest
           revisionSuffix: $REV_SUFFIX
-          canaryDeploy: true
-#           stepPct: 50
-#           stepTime: 0.5
-#           monitorInterval: 0.25
-      - name: direct traffic away
-        run: az containerapp ingress traffic set -n $APP_NAME -g $RESOURCE_GROUP --revision-weight $APP_NAME--$PRIOR_REVISION=100
-      - name: deactivate
-        run: az containerapp revision deactivate --revision $APP_NAME--$REV_SUFFIX --resource-group $RESOURCE_GROUP
-
+          logAnalyticsWorkspace: amber-test-app-logs
+          stepPct: 33
+          stepTime: 5
+          monitorInterval: 1
+          monitors: https://www.google.com, https://www.bing.com
